@@ -1,0 +1,29 @@
+<h1>Catalog</h1>
+
+<%= search_form_for @q, url: catalogs_path, method: :get, remote: true do |f| %>
+  <div>
+    <%= f.label :book_name_cont, "Book Name" %>
+    <%= f.text_field :book_name_cont %>
+  </div>
+  <div>
+    <%= f.label :author_name_cont, "Author Name" %>
+    <%= f.text_field :author_name_cont %>
+  </div>
+  <div>
+    <%= f.label :genre_name_cont, "Genre Name" %>
+    <%= f.text_field :genre_name_cont %>
+  </div>
+  <div>
+    <%= f.submit "Search" %>
+  </div>
+<% end %>
+
+<div id="catalogs">
+  <%= render partial: "catalogs/catalog_list", locals: { catalogs: @catalogs } %>
+</div>
+
+<div id="pagination" data-controller="infinite-scroll">
+  <%= turbo_frame_tag "pagination" do %>
+    <%= pagy_nav(@pagy) if @pagy.next %>
+  <% end %>
+</div>

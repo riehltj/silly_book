@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>Book Name</th>
+      <th>Author Name</th>
+      <th>Genre Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% catalogs.each do |catalog| %>
+      <tr>
+        <td><%= catalog.book_name %></td>
+        <td><%= catalog.author_name %></td>
+        <td><%= catalog.genre_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

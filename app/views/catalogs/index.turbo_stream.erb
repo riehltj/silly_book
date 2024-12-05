@@ -1,0 +1,7 @@
+<%= turbo_stream.append "catalogs" do %>
+  <%= render partial: "catalogs/catalog_list", locals: { catalogs: @catalogs } %>
+<% end %>
+
+<%= turbo_stream.replace "pagination" do %>
+  <%= pagy_nav(@pagy) if @pagy.next %>
+<% end %>
