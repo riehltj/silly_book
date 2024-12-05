@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "book_image_#{catalog.book_id}" do %>
+  <%= image_tag book.cover_image_url, alt: 'Book Cover', class: 'loaded-image' %>
+<% end %>

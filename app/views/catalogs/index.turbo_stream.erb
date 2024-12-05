@@ -1,7 +1,9 @@
 <%= turbo_stream.append "catalogs" do %>
-  <%= render partial: "catalogs/catalog_list", locals: { catalogs: @catalogs } %>
+  <%= render partial: "catalogs/catalog", collection: @catalogs %>
 <% end %>
 
-<%= turbo_stream.replace "pagination" do %>
-  <%= pagy_nav(@pagy) if @pagy.next %>
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace "pagination" do %>
+    <%= turbo_frame_tag "pagination", src: catalogs_path(page: @pagy.next, format: :turbo_stream), loading: :lazy %>
+  <% end %>
 <% end %>

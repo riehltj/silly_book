@@ -74,3 +74,5 @@ gem "faker"
 gem "ransack"
 gem "scenic"
 gem "pagy"
+gem 'mini_magick'
+gem 'open-uri', '~> 0.3.0'

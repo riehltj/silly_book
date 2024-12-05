@@ -6,5 +6,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  resources :catalogs, only: [:index]
+  resources :catalogs do
+  collection do
+    post :index
+  end
+end
+get 'proxy/image', to: 'proxy#image'
+
 end

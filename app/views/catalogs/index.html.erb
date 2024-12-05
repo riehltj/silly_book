@@ -1,29 +1,21 @@
-<h1>Catalog</h1>
-
-<%= search_form_for @q, url: catalogs_path, method: :get, remote: true do |f| %>
-  <div>
-    <%= f.label :book_name_cont, "Book Name" %>
-    <%= f.text_field :book_name_cont %>
-  </div>
-  <div>
-    <%= f.label :author_name_cont, "Author Name" %>
-    <%= f.text_field :author_name_cont %>
-  </div>
-  <div>
-    <%= f.label :genre_name_cont, "Genre Name" %>
-    <%= f.text_field :genre_name_cont %>
-  </div>
-  <div>
-    <%= f.submit "Search" %>
-  </div>
-<% end %>
-
-<div id="catalogs">
-  <%= render partial: "catalogs/catalog_list", locals: { catalogs: @catalogs } %>
-</div>
-
-<div id="pagination" data-controller="infinite-scroll">
-  <%= turbo_frame_tag "pagination" do %>
-    <%= pagy_nav(@pagy) if @pagy.next %>
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">Book Catalog</h1>
+  <%= search_form_for @q, url: catalogs_path, method: :get, remote: true, class: "space-y-4 py-6" do |f| %>
+    <div class="flex flex-col sm:flex-row items-center gap-4">
+      <!-- Search Input -->
+      <div class="w-full sm:w-[20vw]">
+        <%= f.text_field :book_name_or_author_name_or_genre_name_cont, placeholder: "Search books, authors, genres", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+      </div>
+      <!-- Submit Button -->
+      <div>
+        <%= f.submit "Search", class: "px-4 py-2 bg-indigo-600 text-white font-medium text-sm rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+      </div>
+    </div>
   <% end %>
+
+  <!-- Scrollable Area -->
+  <div class="overflow-y-auto h-[75vh] border border-gray-300 rounded-lg shadow-md p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="catalogs" data-controller="infinite-scroll">
+    <!-- Turbo Frame for Catalog Items -->
+    <%= turbo_frame_tag "pagination", class: 'rid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4', src: catalogs_path(format: :turbo_stream, q: params[:q].to_unsafe_h), loading: :lazy %>
+  </div>
 </div>

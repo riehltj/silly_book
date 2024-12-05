@@ -1,0 +1,2 @@
+<%= turbo_frame_tag "book_image_#{book_id}" do %>
+  <%= image_tag "data:image/#{content_type.split('/').last};base64,#{Base64.encode64(image_data)}", alt: 'Book Image' %><% end %>
