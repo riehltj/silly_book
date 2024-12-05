@@ -1,11 +1,13 @@
-<div class="bg-white border border-gray-200 rounded-lg p-4 shadow hover:shadow-lg">
-  <h2 class="text-lg font-semibold text-gray-800"><%= catalog.book_name %></h2>
-  <p class="text-gray-600">Author: <%= catalog.author_name %></p>
-  <p class="text-gray-600">Genre: <%= catalog.genre_name %></p>
+<div class="bg-white border border-gray-200 rounded-lg p-4 shadow hover:shadow-lg flex justify-between">
+  <div class="flex flex-col gap-2">
+    <h2 class="text-lg font-semibold text-gray-800"><%= catalog.book_name %></h2>
+    <p class="text-gray-600">Author: <%= catalog.author_name %></p>
+    <p class="text-gray-600">Genre: <%= catalog.genre_name %></p>
+  </div>
 
-  <%= turbo_frame_tag "book_image_#{catalog.book_id}", src: proxy_image_url(url: 'https://picsum.photos/200', id: catalog.book_id) do %>
+  <%= turbo_frame_tag "book_image_#{catalog.book_id}", src: proxy_image_url(url: 'https://picsum.photos/80', id: catalog.book_id) do %>
       <!-- Placeholder image or spinner -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50" height="50">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="80" height="80">
         <circle cx="25" cy="25" r="20" stroke="gray" stroke-width="5" fill="none" />
         <circle cx="25" cy="25" r="20" stroke="blue" stroke-width="5" fill="none" stroke-dasharray="125.6" stroke-dashoffset="125.6">
           <animate
